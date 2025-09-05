@@ -1,0 +1,18 @@
+mutation SeedData @auth(level: USER) {
+  user_upsertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      username: "bobuser",
+      email: "bob@example.com",
+      passwordHash: "somehash",
+      createdAt: "2024-01-01T00:00:00Z"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440001",
+      username: "aliceuser",
+      email: "alice@example.com",
+      passwordHash: "anotherhash",
+      createdAt: "2024-01-02T00:00:00Z"
+    }
+  ])
+}

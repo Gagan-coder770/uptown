@@ -1,0 +1,59 @@
+type User @table {
+  username: String!
+  email: String!
+  passwordHash: String!
+  createdAt: Timestamp!
+  displayName: String
+  avatarUrl: String
+  status: String
+  lastActiveAt: Timestamp
+}
+
+type Office @table {
+  name: String!
+  owner: User!
+  createdAt: Timestamp!
+  description: String
+  layoutJson: String
+  inviteCode: String
+}
+
+type Room @table {
+  office: Office!
+  name: String!
+  type: String!
+  createdAt: Timestamp!
+  description: String
+  accessPermissionsJson: String
+  coordinates: String
+}
+
+type Avatar @table {
+  user: User!
+  bodyPartJson: String!
+  currentRoom: Room!
+  xPosition: Int!
+  yPosition: Int!
+  currentActivity: String
+  lastMovementAt: Timestamp
+}
+
+type ChatMessage @table {
+  sender: User!
+  messageContent: String!
+  sentAt: Timestamp!
+  room: Room
+  recipient: User
+  isRead: Boolean
+}
+
+type SharedObject @table {
+  room: Room!
+  type: String!
+  xPosition: Int!
+  yPosition: Int!
+  createdAt: Timestamp!
+  name: String
+  propertiesJson: String
+  interactionType: String
+}
