@@ -34,13 +34,21 @@ export default class Computer extends Item {
   }
 
   addCurrentUser(userId: string) {
-    if (!this.currentUsers || this.currentUsers.has(userId)) return
-    this.currentUsers.add(userId)
-    const computerState = store.getState().computer
-    if (computerState.computerId === this.id) {
-      computerState.shareScreenManager?.onUserJoined(userId)
+    if (!this.currentUsers || this.currentUsers.has(userId)) return;
+    this.currentUsers.add(userId);
+    const computerState = store.getState().computer;
+    // When a new user joins, trigger onUserJoined for all users in the session
+    if (computerState.computerId === this.id && computerState.shareScreenManager) {
+      // Notify the shareScreenManager about all users except self
+      for (const otherUserId of this.currentUsers) {
+        if (otherUserId !== userId) {
+          computerState.shareScreenManager.onUserJoined(otherUserId);
+        }
+      }
+      // Also notify the new user about all existing users
+      computerState.shareScreenManager.onUserJoined(userId);
     }
-    this.updateStatus()
+    this.updateStatus();
   }
 
   removeCurrentUser(userId: string) {

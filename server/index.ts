@@ -10,7 +10,13 @@ import { TicTacToeRoom } from './rooms/TicTacToeRoom';
 const port = Number(process.env.PORT || 2567)
 const app = express()
 
-app.use(cors())
+app.use(cors({
+  origin: [
+    'https://uptown1.netlify.app',
+    'http://localhost:5173'
+  ],
+  credentials: true
+}))
 app.use(express.json())
 
 // ✅ Serve frontend from Vite build output
