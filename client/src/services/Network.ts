@@ -31,7 +31,7 @@ export default class Network {
 
  constructor() {
   // Always use local Colyseus server for development
-  const endpoint = "ws://localhost:2567";
+  const endpoint = "wss://uptown-ln2t.onrender.com"; // for Colyseus WebSocket;
   this.client = new Client(endpoint);
 
   this.joinLobbyRoom().then(() => {

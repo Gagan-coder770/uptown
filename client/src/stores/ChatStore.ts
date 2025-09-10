@@ -28,8 +28,9 @@ export const chatSlice = createSlice({
         messageType: MessageType.PLAYER_JOINED,
         chatMessage: {
           createdAt: new Date().getTime(),
+          author: action.payload,
           content: 'joined the lobby',
-        } as IChatMessage,
+        } as unknown as IChatMessage,
       })
     },
     pushPlayerLeftMessage: (state, action: PayloadAction<string>) => {
