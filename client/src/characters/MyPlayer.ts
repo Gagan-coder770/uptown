@@ -62,12 +62,24 @@ export default class MyPlayer extends Player {
     if (Phaser.Input.Keyboard.JustDown(keyR)) {
       switch (item?.itemType) {
         case ItemType.COMPUTER:
-          const computer = item as Computer
-          computer.openDialog(this.playerId, network)
+            const computer = item as Computer;
+            // If 'R join' is shown, always use id '0' (first session)
+            const gameSceneComputer = computer.scene as import('../scenes/Game').default;
+            if (computer.currentUsers.size > 0 && gameSceneComputer.computerMap.has('0')) {
+              gameSceneComputer.computerMap.get('0')!.openDialog(this.playerId, network);
+            } else {
+              computer.openDialog(this.playerId, network);
+            }
           break
         case ItemType.WHITEBOARD:
-          const whiteboard = item as Whiteboard
-          whiteboard.openDialog(network)
+            const whiteboard = item as Whiteboard;
+            // If 'R join' is shown, always use id '0' (first session)
+            const gameSceneWhiteboard = whiteboard.scene as import('../scenes/Game').default;
+            if (whiteboard.currentUsers.size > 0 && gameSceneWhiteboard.whiteboardMap.has('0')) {
+              gameSceneWhiteboard.whiteboardMap.get('0')!.openDialog(network);
+            } else {
+              whiteboard.openDialog(network);
+            }
           break
         case ItemType.VENDINGMACHINE:
           window.dispatchEvent(new window.Event('openGameSnackDialog'));

@@ -127,7 +127,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
 const Message = ({ chatMessage, messageType }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false)
 
-  const author = chatMessage.author || "?";
+  const author = chatMessage && chatMessage.author ? chatMessage.author : "?";
   return (
     <MessageWrapper
       onMouseEnter={() => {

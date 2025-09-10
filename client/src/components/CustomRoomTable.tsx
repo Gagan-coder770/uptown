@@ -146,7 +146,7 @@ export const CustomRoomTable = () => {
               return (
                 <TableRowWrapper key={roomId}>
                   <TableCell>
-                    <Avatar className="avatar" style={{ background: getColorByString(name) }}>
+                    <Avatar className="avatar" style={{ background: getColorByString(name || "?") }}>
                       {getAvatarString(name)}
                     </Avatar>
                   </TableCell>

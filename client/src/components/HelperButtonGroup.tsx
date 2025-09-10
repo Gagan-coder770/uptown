@@ -132,7 +132,7 @@ export default function HelperButtonGroup() {
               <CloseIcon />
             </IconButton>
             <RoomName>
-              <Avatar style={{ background: getColorByString(roomName) }}>
+              <Avatar style={{ background: getColorByString(roomName || "?") }}>
                 {getAvatarString(roomName)}
               </Avatar>
               <h3>{roomName}</h3>

@@ -33,7 +33,7 @@ export default class Game extends Phaser.Scene {
   private otherPlayers!: Phaser.Physics.Arcade.Group
   private otherPlayerMap = new Map<string, OtherPlayer>()
   computerMap = new Map<string, Computer>()
-  private whiteboardMap = new Map<string, Whiteboard>()
+  public whiteboardMap = new Map<string, Whiteboard>()
 
   constructor() {
     super('game')

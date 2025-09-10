@@ -170,7 +170,7 @@ export default function LoginDialog() {
     <Wrapper onSubmit={handleSubmit}>
       <Title>Joining</Title>
       <RoomName>
-        <Avatar style={{ background: getColorByString(roomName) }}>
+  <Avatar style={{ background: getColorByString(roomName || "?") }}>
           {getAvatarString(roomName)}
         </Avatar>
         <h3>{roomName}</h3>
