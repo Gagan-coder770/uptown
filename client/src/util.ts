@@ -21,6 +21,9 @@ const colorArr = [
 
 // determine name color by first character charCode
 export function getColorByString(string: string) {
+  if (!string || typeof string !== 'string' || string.length === 0) {
+    return colorArr[0]; // fallback color
+  }
   return colorArr[Math.floor(string.charCodeAt(0) % colorArr.length)]
 }
 

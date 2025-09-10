@@ -54,10 +54,12 @@ export default function MobileVirtualJoystick() {
     game.myPlayer?.handleJoystickMovement(movement)
   }
 
+  // Always show joystick on mobile, even if showJoystick is false
+  const alwaysShowJoystick = hasSmallScreen;
   return (
     <Backdrop>
       <Wrapper>
-        {!(showChat && hasSmallScreen) && showJoystick && (
+        {(alwaysShowJoystick || showJoystick) && (
           <JoystickWrapper>
             <JoystickItem onDirectionChange={handleMovement}></JoystickItem>
           </JoystickWrapper>

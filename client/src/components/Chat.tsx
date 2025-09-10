@@ -127,6 +127,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
 const Message = ({ chatMessage, messageType }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false)
 
+  const author = chatMessage.author || "?";
   return (
     <MessageWrapper
       onMouseEnter={() => {
@@ -145,14 +146,14 @@ const Message = ({ chatMessage, messageType }) => {
         {messageType === MessageType.REGULAR_MESSAGE ? (
           <p
             style={{
-              color: getColorByString(chatMessage.author),
+              color: getColorByString(author),
             }}
           >
-            {chatMessage.author}: <span>{chatMessage.content}</span>
+            {author}: <span>{chatMessage.content}</span>
           </p>
         ) : (
           <p className="notification">
-            {chatMessage.author} {chatMessage.content}
+            {author} {chatMessage.content}
           </p>
         )}
       </Tooltip>
